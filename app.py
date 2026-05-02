@@ -8,6 +8,7 @@ st.set_page_config(
 
 password = st.text_input("Mot de passe", type="password")
 if password != "tonmotdepasse":
+    st.warning("Entrez le mot de passe pour accéder à l'application")
     st.stop()
     
 st.markdown("""
