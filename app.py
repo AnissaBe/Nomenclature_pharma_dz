@@ -6,10 +6,16 @@ st.set_page_config(
     layout="wide"
 )
 
-password = st.text_input("Mot de passe", type="password", label_visibility="collapsed")
-if password != "APA_appnomenc_26":
-    st.warning("Entrez le mot de passe pour accéder à l'application")
-    st.stop()
+if "authenticated" not in st.session_state:
+    st.session_state.authenticated = False
+
+if not st.session_state.authenticated:
+    password = st.text_input("Mot de passe", type="password")
+    if password == "APA_appnomenc_26":
+        st.session_state.authenticated = True
+        st.rerun()
+    else:
+        st.stop()
     
 st.markdown("""
     <style>
